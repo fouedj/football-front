@@ -1,0 +1,17 @@
+# Ignore les répertoires node_modules et build (output)
+node_modules
+build
+
+# Ignorer les fichiers de configuration spécifiques à l'éditeur
+.vscode
+.idea
+*.swp
+
+# Ignorer les fichiers et répertoires cachés spécifiques au système
+.DS_Store
+Thumbs.db
+
+# Ignorer les logs et les fichiers temporaires
+npm-debug.log
+yarn-error.log
+*.log

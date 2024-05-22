@@ -1,0 +1,19 @@
+/* src/styles/AutoComplete.css */
+.autocomplete-list {
+  list-style-type: none; /* Removes the bullets */
+  padding: 0; /* Removes the padding */
+  margin: 0; /* Removes the margin */
+  height: 500px;
+  overflow: auto;
+}
+.autocomplete-list li {
+  text-align: left;
+  padding: 5px;
+  color: gray;
+  border-bottom: 0.5px solid #ddd;
+}
+.autocomplete-container {
+  position: absolute;
+  width: 100%;
+  background-color: white;
+}
