@@ -8,6 +8,7 @@ import AutoComplete from "./AutoComplete";
 
 const TeamList: React.FC = () => {
   const [selectedLeague, setSelectedLeague] = React.useState("");
+  console.log({ selectedLeague });
   const { data, loading } = useFetch<Team[]>(
     "team/in-league?league=" + selectedLeague,
     {

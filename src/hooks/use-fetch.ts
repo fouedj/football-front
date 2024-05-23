@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 
-const API_BASE_URL = "http://nestjs-app:5000/api";
+const API_BASE_URL = "";
 
 const useFetch = <T>(path: string, params: any = null) => {
   const [data, setData] = React.useState<T | null>(null);
@@ -10,11 +10,14 @@ const useFetch = <T>(path: string, params: any = null) => {
   const loadData = async () => {
     setLoading(true); // Set loading to true when starting to fetch data
     try {
-      const response = await axios.get(`${API_BASE_URL}/${path}`, {
+      console.log({ path });
+      const response = await axios.get(`http://api/${path}`, {
         headers: {
           "Content-Type": "application/json",
         },
+        withCredentials: false,
       });
+
       setData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
