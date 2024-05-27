@@ -1,8 +1,7 @@
 import axios from "axios";
 import React from "react";
 
-const API_BASE_URL = "";
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "";
 const useFetch = <T>(path: string, params: any = null) => {
   const [data, setData] = React.useState<T | null>(null);
   const [loading, setLoading] = React.useState(false);
@@ -11,13 +10,13 @@ const useFetch = <T>(path: string, params: any = null) => {
     setLoading(true); // Set loading to true when starting to fetch data
     try {
       console.log({ path });
-      const response = await axios.get(`http://api/${path}`, {
+      const response = await axios.get(`${API_BASE_URL}/${path}`, {
         headers: {
           "Content-Type": "application/json",
         },
         withCredentials: false,
       });
-
+      console.log({ API_BASE_URL });
       setData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
