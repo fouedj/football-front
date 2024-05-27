@@ -16,10 +16,11 @@ const useFetch = <T>(path: string, params: any = null) => {
         },
         withCredentials: false,
       });
-      console.log({ API_BASE_URL });
+
       setData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
+      console.log({ API_BASE_URL });
       throw error; // Re-throw the error after logging it
     } finally {
       setLoading(false); // Set loading to false when data fetching is done
