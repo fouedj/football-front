@@ -27,20 +27,9 @@ jobs:
     needs: build
     runs-on: aws-ec2
     steps:
-      - name: Install SSH Client
-        run: sudo apt-get install -y openssh-client
-
-      - name: Add SSH Key and Configure SSH Agent
-        uses: webfactory/ssh-agent@v0.5.3
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Pull Image from Docker Hub on EC2
-        env:
-          EC2_HOST: ${{ secrets.EC2_HOST }}
-        run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ec2-user@${EC2_HOST} << 'EOF'
-          docker pull fouedjaridi122/football-front:latest
-          docker rm -f reactContainer || true
-          docker run -d -p 3000:80 --name reactContainer fouedjaridi122/football-front:latest
-          EOF
+      - name: Pull image from docker hub
+        run: docker pull fouedjaridi122/football-front:latest
+      - name: Delete Old Container
+        run: docker rm -f reactContainer
+      - name: Run docker container
+        run: docker run -d -p 3000:80 --name reactContainer fouedjaridi122/football-front:latest
