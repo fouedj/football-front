@@ -16,7 +16,7 @@ const TeamDetails: React.FC = () => {
   return (
     <div>
       <h1>{team?.name}</h1>
-      <h2>Players</h2>
+      <h2>Les joueurs</h2>
       <PlayerList team={team?.strTeam} />
     </div>
   );

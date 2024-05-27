@@ -30,7 +30,7 @@ const TeamList: React.FC = () => {
 
   return (
     <div>
-      <h1>Team List</h1>
+      <h1>List des joueurs</h1>
       <input
         type="text"
         placeholder="Enter league to search"
