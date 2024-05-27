@@ -21,7 +21,7 @@ jobs:
         run: docker build -t fouedjaridi122/football-front .
 
       - name: Publish Image to Docker Hub
-        run: docker push fouedjaridi122/football-front:v2
+        run: docker push fouedjaridi122/football-front:latest
 
   deploy:
     needs: build
@@ -41,7 +41,7 @@ jobs:
       - name: Pull Image from Docker Hub on EC2
         run: |
           ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} << 'EOF'
-          docker pull fouedjaridi122/football-front:v2
+          docker pull fouedjaridi122/football-front:latest
           docker rm -f reactContainer || true
-          docker run -d -p 3000:80 --name reactContainer fouedjaridi122/football-front:v2
+          docker run -d -p 3000:80 --name reactContainer fouedjaridi122/football-front:latest
           EOF
