@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { fetchTeams } from "../services/api";
 import { Team } from "../utility/types";
 import { Link } from "react-router-dom";
 import "../styles/TeamList.css";
 import useFetch from "../hooks/use-fetch";
 import AutoComplete from "./AutoComplete";
+import { useTranslation } from "react-i18next";
 
 const TeamList: React.FC = () => {
   const [selectedLeague, setSelectedLeague] = React.useState("");
-  console.log({ selectedLeague });
+  const { t, i18n } = useTranslation();
   const { data, loading } = useFetch<Team[]>(
     "team/in-league?league=" + selectedLeague,
     {
@@ -17,6 +17,7 @@ const TeamList: React.FC = () => {
   );
   const [searchLeague, setSearchLeague] = useState<string>("");
   const [showAutoComplete, setShowAutoComplete] = React.useState(false);
+
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchLeague(event.target.value);
     setShowAutoComplete(true);
@@ -28,18 +29,37 @@ const TeamList: React.FC = () => {
     setShowAutoComplete(false);
   };
 
+  const handleLanguageChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    i18n.changeLanguage(event.target.value);
+  };
+
   return (
-    <div>
-      <h1>List des joueurs</h1>
-      <input
-        type="text"
-        placeholder="Enter league to search"
-        value={searchLeague}
-        onChange={handleSearchChange}
-      />
-      {searchLeague && showAutoComplete && (
-        <AutoComplete text={searchLeague} onChange={onChangeAutoComplete} />
-      )}
+    <div className="team-list-container">
+      <div className="language-switcher">
+        <label htmlFor="language-select">{t("language")}</label>
+        <select
+          id="language-select"
+          value={i18n.language}
+          onChange={handleLanguageChange}
+        >
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+        </select>
+      </div>
+      <h1>{t("teamList")}</h1>
+      <div className="input-container">
+        <input
+          type="text"
+          placeholder={t("enterLeague")}
+          value={searchLeague}
+          onChange={handleSearchChange}
+        />
+        {searchLeague && showAutoComplete && (
+          <AutoComplete text={searchLeague} onChange={onChangeAutoComplete} />
+        )}
+      </div>
       {loading && (
         <div className="spinner-container">
           <div className="spinner"></div>

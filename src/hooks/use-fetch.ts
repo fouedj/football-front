@@ -7,7 +7,7 @@ const useFetch = <T>(path: string, params: any = null) => {
   const [loading, setLoading] = React.useState(false);
 
   const loadData = async () => {
-    setLoading(true); // Set loading to true when starting to fetch data
+    setLoading(true);
     try {
       console.log({ path });
       const response = await axios.get(`${API_BASE_URL}/${path}`, {
@@ -21,15 +21,15 @@ const useFetch = <T>(path: string, params: any = null) => {
     } catch (error) {
       console.error("Error fetching data:", error);
       console.log({ API_BASE_URL });
-      throw error; // Re-throw the error after logging it
+      throw error;
     } finally {
-      setLoading(false); // Set loading to false when data fetching is done
+      setLoading(false);
     }
   };
 
   React.useEffect(() => {
     loadData();
-  }, [path]); // Add path and params as dependencies
+  }, [path]);
 
   return { data, loading };
 };
