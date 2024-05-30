@@ -1,71 +1,75 @@
+/* TeamList.css */
 .team-list-container {
-  padding: 20px;
   position: relative;
+  padding: 20px;
+}
+
+.language-switcher-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.language-label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 10px;
+  color: #333;
+}
+
+.language-select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.language-select:hover {
+  border-color: #bbb;
+}
+
+.language-select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
 
 .input-container {
+  margin: 20px 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-input[type="text"],
-select {
-  width: 100%;
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: width 0.3s, box-shadow 0.3s;
-}
-
-input[type="text"]:focus,
-select:focus {
-  outline: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.language-switcher {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  display: flex;
   align-items: center;
 }
 
-.language-switcher select {
-  margin-left: 10px;
-}
-
-@media (max-width: 600px) {
-  input[type="text"],
-  select {
-    padding: 8px;
-  }
-}
-
-h1 {
-  text-align: center;
-  font-size: 2rem;
+input[type="text"] {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
   color: #333;
-  margin-bottom: 20px;
-  font-family: "Arial", sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-h1::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 4px;
-  background-color: #3498db;
-  margin: 10px auto 0;
-  border-radius: 2px;
+input[type="text"]:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+input[type="text"]::placeholder {
+  color: #aaa;
 }
 
 .team-list {
@@ -80,23 +84,24 @@ h1::after {
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  color: black;
-  border: 1px solid #ccc;
   border-radius: 10px;
-  padding: 10px;
-  transition: transform 0.2s;
+  padding: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .team-item:hover {
   transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .team-badge {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  margin-bottom: 10px;
+  overflow: hidden;
+  object-fit: cover;
 }
 
 .spinner-container {

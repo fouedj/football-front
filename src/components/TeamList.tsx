@@ -16,17 +16,17 @@ const TeamList: React.FC = () => {
     }
   );
   const [searchLeague, setSearchLeague] = useState<string>("");
-  const [showAutoComplete, setShowAutoComplete] = React.useState(false);
+  const [showAutoComplete, setShowAutoComplete] = useState<boolean>(false);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchLeague(event.target.value);
-    setShowAutoComplete(true);
+    setShowAutoComplete(true); // Affiche la liste autocomplete lorsque l'input change
   };
 
   const onChangeAutoComplete = (league: string) => {
     setSearchLeague(league);
     setSelectedLeague(league);
-    setShowAutoComplete(false);
+    setShowAutoComplete(false); // Cache la liste autocomplete après avoir sélectionné une ligue
   };
 
   const handleLanguageChange = (
@@ -37,12 +37,15 @@ const TeamList: React.FC = () => {
 
   return (
     <div className="team-list-container">
-      <div className="language-switcher">
-        <label htmlFor="language-select">{t("language")}</label>
+      <div className="language-switcher-container">
+        <label htmlFor="language-select" className="language-label">
+          {t("language")}:
+        </label>
         <select
           id="language-select"
           value={i18n.language}
           onChange={handleLanguageChange}
+          className="language-select"
         >
           <option value="en">English</option>
           <option value="fr">Français</option>
@@ -55,8 +58,9 @@ const TeamList: React.FC = () => {
           placeholder={t("enterLeague")}
           value={searchLeague}
           onChange={handleSearchChange}
+          onFocus={() => setShowAutoComplete(true)}
         />
-        {searchLeague && showAutoComplete && (
+        {showAutoComplete && (
           <AutoComplete text={searchLeague} onChange={onChangeAutoComplete} />
         )}
       </div>

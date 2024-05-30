@@ -1,13 +1,40 @@
-.language-switcher {
+/* LanguageSwitcher.css */
+.language-switcher-container {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.language-switcher select {
-  padding: 5px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
+.language-label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 10px;
+  color: #333;
+}
+
+.language-select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #fff;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.language-select:hover {
+  border-color: #bbb;
+}
+
+.language-select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }

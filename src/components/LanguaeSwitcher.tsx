@@ -12,8 +12,16 @@ const LanguageSwitcher: React.FC = () => {
   };
 
   return (
-    <div className="language-switcher">
-      <select value={i18n.language} onChange={handleLanguageChange}>
+    <div className="language-switcher-container">
+      <label htmlFor="language-select" className="language-label">
+        Language:
+      </label>
+      <select
+        id="language-select"
+        value={i18n.language}
+        onChange={handleLanguageChange}
+        className="language-select"
+      >
         <option value="en">English</option>
         <option value="fr">Français</option>
       </select>
